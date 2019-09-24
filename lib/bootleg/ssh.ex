@@ -165,10 +165,6 @@ defmodule Bootleg.SSH do
   @last_new_line ~r/\A(?<bulk>.*)((?<newline>\n)(?<remainder>[^\n]*))?\z/msU
 
   defp split_last_line(data) do
-    require Logger
-    Logger.warn("++++++++++")
-    Logger.warn(inspect(data))
-
     %{"bulk" => bulk, "newline" => newline, "remainder" => remainder} =
       Regex.named_captures(@last_new_line, data)
 

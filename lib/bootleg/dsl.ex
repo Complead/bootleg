@@ -271,7 +271,7 @@ defmodule Bootleg.DSL do
 
       # credo:disable-for-lines:275 Credo.Check.Design.AliasUsage
       module_name
-      |> Code.ensure_compiled?()
+      |> Code.ensure_loaded?()
       |> Bootleg.DSL.warn_task_redefined(
         unquote(task),
         unquote(module_name),
@@ -366,7 +366,7 @@ defmodule Bootleg.DSL do
 
     module_name = module_for_task(task)
 
-    if Code.ensure_compiled?(module_name) do
+    if Code.ensure_loaded?(module_name) do
       apply(module_name, :execute, [])
     end
 
